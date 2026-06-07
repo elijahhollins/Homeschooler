@@ -51,11 +51,11 @@ function PlaceExplorer({ onGenerate, onToast }) {
     return [...r].sort((a, b) => a.dist - b.dist);
   }, [query, typeFilter, placesWithDist]);
 
-  const useLocation = () => {
+  const requestLocation = () => {
     setLocating(true);
     if (!navigator.geolocation) {
-      setLocating(false); setLocated(true);
-      onToast('Showing places sorted by distance');
+      setLocating(false);
+      onToast('Location not supported by this browser');
       return;
     }
     navigator.geolocation.getCurrentPosition(
@@ -65,8 +65,8 @@ function PlaceExplorer({ onGenerate, onToast }) {
         onToast('Showing places near you');
       },
       () => {
-        setLocating(false); setLocated(true);
-        onToast('Location unavailable — showing default distances');
+        setLocating(false);
+        onToast('Location unavailable — check browser permissions');
       },
       { timeout: 8000 }
     );
@@ -92,7 +92,7 @@ function PlaceExplorer({ onGenerate, onToast }) {
                 style={{ border: 'none', outline: 'none', flex: 1, fontSize: 15, fontFamily: t.fontBody, color: t.text, background: 'transparent' }} />
               {query && <button onClick={() => setQuery('')} style={{ border: 'none', background: 'transparent', cursor: 'pointer', color: t.textMuted, display: 'flex' }}><Icon name="close" size={18} /></button>}
             </div>
-            <Btn kind="warm" size="lg" icon="locate" onClick={useLocation} disabled={locating}
+            <Btn kind="warm" size="lg" icon="locate" onClick={requestLocation} disabled={locating}
               style={{ background: '#fff', color: t.accent }}>
               {locating ? 'Locating…' : located ? 'Near you' : 'Use my location'}
             </Btn>
