@@ -16,7 +16,7 @@ const PLACE_TYPES = [
 const PLACES = [
   {
     id: 'mba', name: 'Bay Aquarium', type: 'aquarium', typeLabel: 'Aquarium',
-    city: 'Monterey, CA', dist: 2.4, rating: 4.8, reviews: 12480,
+    city: 'Monterey, CA', lat: 36.6177, lng: -121.9023, dist: 2.4, rating: 4.8, reviews: 12480,
     hours: '10:00 AM – 5:00 PM', price: '$$', priceNote: '$49 adult · $39 child',
     blurb: 'A world-renowned aquarium on the edge of the bay, famous for its kelp forest, sea otters, and touch pools.',
     grades: 'K–8', subjects: ['Science', 'Geography'], duration: '2–4 hrs',
@@ -59,7 +59,7 @@ const PLACES = [
   },
   {
     id: 'cityzoo', name: 'Greenwood Zoo', type: 'zoo', typeLabel: 'Zoo',
-    city: 'Portland, OR', dist: 4.1, rating: 4.6, reviews: 8210,
+    city: 'Portland, OR', lat: 45.5136, lng: -122.6828, dist: 4.1, rating: 4.6, reviews: 8210,
     hours: '9:30 AM – 4:00 PM', price: '$$', priceNote: '$24 adult · $18 child',
     blurb: 'A 64-acre zoo organized by world habitats, with a celebrated elephant family and a hands-on nature discovery center.',
     grades: 'Pre-K–8', subjects: ['Science', 'Geography'], duration: '3–5 hrs',
@@ -102,7 +102,7 @@ const PLACES = [
   },
   {
     id: 'natsci', name: 'Hall of Natural History', type: 'museum', typeLabel: 'Natural History Museum',
-    city: 'Denver, CO', dist: 6.7, rating: 4.7, reviews: 15300,
+    city: 'Denver, CO', lat: 39.7392, lng: -104.9903, dist: 6.7, rating: 4.7, reviews: 15300,
     hours: '9:00 AM – 5:00 PM', price: '$$', priceNote: '$22 adult · $16 child',
     blurb: 'Towering dinosaur skeletons, a gems-and-minerals vault, and a planetarium under one roof.',
     grades: 'K–8', subjects: ['Science', 'Social Studies'], duration: '3–4 hrs',
@@ -145,7 +145,7 @@ const PLACES = [
   },
   {
     id: 'redwood', name: 'Tall Pines State Park', type: 'park', typeLabel: 'State Park',
-    city: 'Felton, CA', dist: 11.3, rating: 4.9, reviews: 5640,
+    city: 'Felton, CA', lat: 37.0512, lng: -122.0644, dist: 11.3, rating: 4.9, reviews: 5640,
     hours: 'Sunrise – Sunset', price: '$', priceNote: '$10 / vehicle',
     blurb: 'Old-growth forest with easy interpretive trails, a creek, and a junior ranger program.',
     grades: 'Pre-K–8', subjects: ['Science', 'Art'], duration: '2–3 hrs',
@@ -188,7 +188,7 @@ const PLACES = [
   },
   {
     id: 'scictr', name: 'Discovery Science Center', type: 'science', typeLabel: 'Science Center',
-    city: 'Austin, TX', dist: 3.9, rating: 4.5, reviews: 9870,
+    city: 'Austin, TX', lat: 30.2672, lng: -97.7431, dist: 3.9, rating: 4.5, reviews: 9870,
     hours: '10:00 AM – 6:00 PM', price: '$$', priceNote: '$19 all ages',
     blurb: 'Hands-on exhibits on physics, electricity, and the human body, plus a maker space and live science demos.',
     grades: 'Pre-K–8', subjects: ['Science', 'Math'], duration: '2–4 hrs',
@@ -231,7 +231,7 @@ const PLACES = [
   },
   {
     id: 'fort', name: 'Old Harbor Fort', type: 'history', typeLabel: 'Historic Site',
-    city: 'Charleston, SC', dist: 8.2, rating: 4.7, reviews: 6420,
+    city: 'Charleston, SC', lat: 32.7765, lng: -79.9311, dist: 8.2, rating: 4.7, reviews: 6420,
     hours: '9:00 AM – 5:00 PM', price: '$', priceNote: '$15 adult · free under 16',
     blurb: 'A restored coastal fort with costumed interpreters, cannon demonstrations, and harbor-history exhibits.',
     grades: 'Grade 2–8', subjects: ['Social Studies', 'Geography'], duration: '2–3 hrs',

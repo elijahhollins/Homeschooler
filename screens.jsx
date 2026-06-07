@@ -26,7 +26,7 @@ function timeAgo(ts) {
 }
 
 /* ---- Home ---- */
-function HomeScreen({ onNav, onGenerate, library, onOpen, greetName }) {
+function HomeScreen({ onNav, onGenerate, library, onOpen, onToggleFav, greetName }) {
   const t = useT();
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
@@ -78,13 +78,13 @@ function HomeScreen({ onNav, onGenerate, library, onOpen, greetName }) {
 
       <SectionHead title="Recent in your library" action={<Btn kind="ghost" size="sm" iconR="arrowR" onClick={() => onNav('library')}>View all</Btn>} />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 14 }}>
-        {recent.map((r) => <LibCard key={r.id} m={r} t={t} onOpen={onOpen} />)}
+        {recent.map((r) => <LibCard key={r.id} m={r} t={t} onOpen={onOpen} onToggleFav={onToggleFav} />)}
       </div>
     </div>
   );
 }
 
-function LibCard({ m, t, onOpen, onShare }) {
+function LibCard({ m, t, onOpen, onToggleFav }) {
   return (
     <Card hover pad={14} onClick={() => onOpen(m)} style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
       <MiniThumb type={m.type} t={t} />
@@ -92,7 +92,13 @@ function LibCard({ m, t, onOpen, onShare }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 6 }}>
           <Icon name={GEN_BY_ID[m.type].icon} size={14} stroke={t.accent} />
           <span style={{ fontFamily: t.fontMono, fontSize: 10.5, textTransform: 'uppercase', letterSpacing: '0.05em', color: t.textMuted }}>{GEN_BY_ID[m.type].title}</span>
-          {m.fav && <Icon name="star" size={13} stroke={t.warm} style={{ fill: t.warm, marginLeft: 'auto' }} sw={0} />}
+          {onToggleFav && (
+            <button onClick={(e) => { e.stopPropagation(); onToggleFav(m.id); }}
+              style={{ border: 'none', background: 'transparent', cursor: 'pointer', padding: 2, marginLeft: 'auto',
+                color: m.fav ? t.warm : t.textFaint, display: 'flex', lineHeight: 1 }}>
+              <Icon name="star" size={14} stroke={m.fav ? t.warm : t.textFaint} style={m.fav ? { fill: t.warm } : {}} sw={m.fav ? 0 : 1.7} />
+            </button>
+          )}
         </div>
         <div style={{ fontWeight: 600, fontSize: 14, lineHeight: 1.3 }}>{m.title}</div>
         <div style={{ fontSize: 12, color: t.textMuted, marginTop: 4 }}>{m.subject} · {m.grade}</div>
@@ -105,13 +111,13 @@ function LibCard({ m, t, onOpen, onShare }) {
 }
 
 /* ---- Library ---- */
-function LibraryScreen({ library, onOpen }) {
+function LibraryScreen({ library, onOpen, onToggleFav }) {
   const t = useT();
   const [filter, setFilter] = useState('all');
   const [q, setQ] = useState('');
   const filtered = library.filter((m) => (filter === 'all' || m.type === filter) &&
     (!q.trim() || m.title.toLowerCase().includes(q.toLowerCase()) || m.subject.toLowerCase().includes(q.toLowerCase())))
-    .sort((a, b) => b.createdAt - a.createdAt);
+    .sort((a, b) => { if (a.fav !== b.fav) return a.fav ? -1 : 1; return b.createdAt - a.createdAt; });
   const counts = library.reduce((acc, m) => { acc[m.type] = (acc[m.type]||0)+1; return acc; }, {});
   return (
     <div>
@@ -133,7 +139,7 @@ function LibraryScreen({ library, onOpen }) {
       </div>
       {filtered.length ? (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))', gap: 14 }}>
-          {filtered.map((m) => <LibCard key={m.id} m={m} t={t} onOpen={onOpen} />)}
+          {filtered.map((m) => <LibCard key={m.id} m={m} t={t} onOpen={onOpen} onToggleFav={onToggleFav} />)}
         </div>
       ) : (
         <Card style={{ textAlign: 'center', padding: '50px 20px', color: t.textMuted }}>

@@ -207,6 +207,173 @@ const TOPIC_BANK = {
       'How is a dolphin different from a fish?'],
     passage: 'The ocean is the largest habitat on Earth, and it is full of incredible animals. Some, like fish, breathe underwater using special body parts called gills. Others, like whales and dolphins, are mammals — they must swim to the surface to breathe air, just like we do.\n\nOcean animals have clever ways to survive. An octopus can change color to hide from predators, and it has three hearts pumping blue blood through its body! The blue whale, the largest animal that has ever lived, is so big that its heart alone is the size of a small car.\n\nFrom the sunlit coral reefs near the surface to the dark, cold waters far below, every part of the ocean is home to creatures perfectly suited to their watery world.',
   },
+
+  'multiplication': {
+    subject: 'Math',
+    vocab: [
+      ['factor', 'A number that is multiplied by another number.'],
+      ['product', 'The answer you get when you multiply two numbers.'],
+      ['array', 'Objects arranged in equal rows and columns to show multiplication.'],
+      ['skip counting', 'Counting by a number other than 1, like 2, 4, 6, 8.'],
+    ],
+    facts: [
+      'Multiplication is a fast way to add the same number many times.',
+      'The order of factors does not change the product: 3 × 4 = 4 × 3.',
+      'Any number multiplied by zero equals zero.',
+      'Any number multiplied by one equals itself.',
+    ],
+    fill: [
+      ['The answer to a multiplication problem is called the ___.', 'product'],
+      ['3 × 4 = ___ because it is the same as 3 groups of 4.', '12'],
+      ['The numbers you multiply together are called ___.', 'factors'],
+    ],
+    mc: [
+      ['What is 6 × 7?', ['40', '42', '43', '48'], 1],
+      ['What is 8 × 9?', ['63', '70', '72', '81'], 2],
+      ['Which is the product of 5 × 5?', ['10', '20', '25', '30'], 2],
+      ['What is 0 × 99?', ['99', '0', '1', '9'], 1],
+    ],
+    short: ['Write a word problem that can be solved using 4 × 6.', 'Draw an array to show 3 × 5 and explain how it works.'],
+    compute: [
+      ['4 × 6 =', '24'], ['7 × 8 =', '56'], ['9 × 3 =', '27'], ['5 × 7 =', '35'], ['6 × 6 =', '36'],
+    ],
+    passage: 'Multiplication is one of the most useful tools in all of mathematics. At its heart, multiplication is just a quicker way to add. Instead of writing 5 + 5 + 5 + 5, you can simply write 5 × 4 and get the same answer: 20.\n\nWhen you multiply, the numbers you work with are called factors, and the answer is called the product. One helpful way to picture multiplication is to draw an array — rows and columns of dots or squares. Three rows of four dots gives you 12 dots in all, so 3 × 4 = 12.\n\nOne of the great shortcuts in multiplication is the commutative property: the order of the factors doesn\'t matter. 3 × 4 gives the same product as 4 × 3. Learning your times tables opens a door to faster math in every subject.',
+  },
+  'plants': {
+    subject: 'Science',
+    vocab: [
+      ['roots', 'The part of a plant that grows underground and absorbs water and nutrients.'],
+      ['stem', 'The part of a plant that supports leaves and carries water from roots to leaves.'],
+      ['chlorophyll', 'The green substance in leaves that captures sunlight for food-making.'],
+      ['pollination', 'The process of moving pollen from one flower to another so seeds can form.'],
+      ['germination', 'The process of a seed sprouting and beginning to grow into a plant.'],
+    ],
+    facts: [
+      'Plants make their own food using sunlight, water, and air.',
+      'Roots anchor plants in the soil and absorb water.',
+      'Flowers help plants reproduce by attracting pollinators.',
+    ],
+    fill: [
+      ['The ___ absorbs water and nutrients from the soil.', 'root'],
+      ['Leaves are green because they contain ___.', 'chlorophyll'],
+      ['A seed sprouting is called ___.', 'germination'],
+    ],
+    mc: [
+      ['Which part carries water from roots to leaves?', ['Flower', 'Stem', 'Root', 'Seed'], 1],
+      ['What do plants need to make their own food?', ['Dirt only', 'Sunlight, water, and air', 'Animals', 'Darkness'], 1],
+      ['Which part of a plant helps it reproduce?', ['Root', 'Stem', 'Flower', 'Bark'], 2],
+    ],
+    short: ['Describe what would happen to a plant if it had no roots.', 'Explain why flowers are important to plants.'],
+    passage: 'Plants are living things that have many different parts, each with an important job. The roots grow underground, anchoring the plant firmly in the soil and soaking up the water and nutrients it needs to survive. The stem rises from the roots, acting like a pipeline that carries water and food throughout the plant.\n\nThe leaves are the plant\'s food factory. They contain a green substance called chlorophyll that captures energy from sunlight. The plant uses that energy, along with water and carbon dioxide from the air, to make its own food in a process called photosynthesis.\n\nFlowers are the plant\'s way of making seeds. Pollinators like bees and butterflies carry pollen from flower to flower. Once a flower is pollinated, it can form seeds. Each seed holds the instructions for a brand-new plant, waiting for the right conditions to germinate.',
+  },
+  'weather': {
+    subject: 'Science',
+    vocab: [
+      ['atmosphere', 'The layers of air and gases that surround Earth.'],
+      ['precipitation', 'Water that falls from clouds as rain, snow, sleet, or hail.'],
+      ['temperature', 'A measure of how hot or cold the air is.'],
+      ['wind', 'Moving air caused by differences in air pressure and temperature.'],
+      ['humidity', 'The amount of water vapor in the air.'],
+    ],
+    facts: [
+      'Weather describes what the atmosphere is doing right now.',
+      'The sun drives Earth\'s weather by heating air unevenly.',
+      'Meteorologists study and forecast weather using instruments.',
+    ],
+    fill: [
+      ['Rain, snow, and hail are all forms of ___.', 'precipitation'],
+      ['___ is a measure of how warm or cold the air is.', 'temperature'],
+      ['A scientist who studies weather is called a ___.', 'meteorologist'],
+    ],
+    mc: [
+      ['What causes wind?', ['The moon pulling air', 'Differences in air pressure', 'Clouds moving', 'Ocean waves'], 1],
+      ['Which tool measures temperature?', ['Barometer', 'Thermometer', 'Rain gauge', 'Wind vane'], 1],
+      ['What is humidity?', ['Speed of wind', 'Amount of rain', 'Water vapor in air', 'Cloud height'], 2],
+    ],
+    short: ['Describe the weather outside today and explain what causes it.', 'Why do you think weather forecasts are sometimes wrong?'],
+    passage: 'Look outside your window and you can observe weather happening right now. Weather is the condition of the atmosphere at a particular place and time. It includes temperature, wind, clouds, and precipitation like rain and snow.\n\nThe sun is the engine that drives all weather. Because the sun heats different parts of Earth unevenly, the air moves around. Warm air rises, cool air rushes in to replace it, and that movement creates wind. When warm, moist air rises and cools, water vapor condenses into clouds. When droplets in clouds grow heavy enough, they fall as precipitation.\n\nScientists who study weather are called meteorologists. They use thermometers, barometers, and radar to measure what the atmosphere is doing and predict what it will do next. Understanding weather helps people stay safe and plan their days.',
+  },
+  'human body': {
+    subject: 'Science',
+    vocab: [
+      ['organ', 'A body part that does a specific job, like the heart or lungs.'],
+      ['skeleton', 'The framework of bones that supports and protects the body.'],
+      ['muscle', 'Tissue that contracts and relaxes to move parts of the body.'],
+      ['circulatory system', 'The system of heart and blood vessels that moves blood through the body.'],
+      ['digestive system', 'The organs that break down food so the body can use it for energy.'],
+    ],
+    facts: [
+      'The human body has more than 200 bones.',
+      'The heart beats about 100,000 times every day.',
+      'The brain controls everything the body does.',
+    ],
+    fill: [
+      ['The ___ is the organ that pumps blood through the body.', 'heart'],
+      ['Bones form the body\'s ___, which supports and protects organs.', 'skeleton'],
+      ['The stomach is part of the ___ system.', 'digestive'],
+    ],
+    mc: [
+      ['How many bones does an adult human body have?', ['50', '106', '206', '300'], 2],
+      ['Which system moves blood throughout the body?', ['Digestive', 'Circulatory', 'Skeletal', 'Nervous'], 1],
+      ['What does the brain do?', ['Pumps blood', 'Digests food', 'Controls the body', 'Breathes air'], 2],
+    ],
+    short: ['Choose one body system and explain how it keeps you healthy.', 'Why do you think bones are important even though they feel hard and stiff?'],
+    passage: 'Your body is an amazing machine made of trillions of tiny cells that work together as a team. Groups of cells form tissues, tissues form organs, and organs work together in systems.\n\nThe skeletal system gives your body its shape and protects your brain, heart, and lungs. Your skeleton is connected to muscles, which pull on your bones to help you move, run, and jump. The circulatory system — your heart and blood vessels — delivers oxygen and nutrients to every cell and carries away waste.\n\nThe digestive system breaks food into tiny pieces the body can absorb. The nervous system, led by the brain and spinal cord, receives information from the world and sends signals that control everything you do. Each system depends on the others, so taking care of your body keeps all the systems running smoothly.',
+  },
+  'ancient egypt': {
+    subject: 'Social Studies',
+    vocab: [
+      ['pharaoh', 'The title for the ruler of ancient Egypt, considered a god-king.'],
+      ['pyramid', 'A massive stone structure built as a tomb for Egyptian pharaohs.'],
+      ['hieroglyphics', 'The ancient Egyptian writing system using pictures and symbols.'],
+      ['mummy', 'A body preserved through a special drying process for the afterlife.'],
+      ['Nile River', 'The great river in Egypt whose annual floods made farmland fertile.'],
+    ],
+    facts: [
+      'Ancient Egypt lasted for over 3,000 years.',
+      'The Great Pyramid of Giza is one of the Seven Wonders of the Ancient World.',
+      'Egyptians invented one of the world\'s first writing systems.',
+    ],
+    fill: [
+      ['The ruler of ancient Egypt was called a ___.', 'pharaoh'],
+      ['Egyptians used ___ as a writing system made of pictures.', 'hieroglyphics'],
+      ['The ___ River flooded each year and made the soil rich for farming.', 'Nile'],
+    ],
+    mc: [
+      ['What was a pharaoh?', ['A type of pyramid', 'The ruler of Egypt', 'A writing symbol', 'A preserved body'], 1],
+      ['Why were pyramids built?', ['As schools', 'As markets', 'As tombs for pharaohs', 'As bridges'], 2],
+      ['What did the Nile floods bring?', ['Destruction', 'Fertile soil', 'Dry air', 'Ocean fish'], 1],
+    ],
+    short: ['Why do you think the Nile River was so important to ancient Egyptians?', 'What would be hard about building a pyramid with only ancient tools?'],
+    passage: 'Ancient Egypt was one of the greatest civilizations the world has ever known. For more than 3,000 years, it flourished along the banks of the Nile River in northeastern Africa. Every year the Nile flooded, leaving behind rich, dark soil perfect for growing crops. This reliable food supply allowed Egypt to grow powerful.\n\nAt the top of Egyptian society was the pharaoh, a god-king who ruled over everything. When pharaohs died, Egyptians believed they traveled to an afterlife. To prepare for this journey, their bodies were carefully preserved as mummies, and enormous stone pyramids were built as tombs to protect them forever.\n\nEgyptians also developed one of the world\'s earliest writing systems called hieroglyphics, using hundreds of pictures and symbols to record stories, laws, and history. Thanks to these writings, carved into stone walls and temples, we can still read about ancient Egyptian life today.',
+  },
+  'civil war': {
+    subject: 'Social Studies',
+    vocab: [
+      ['secession', 'When a state leaves the Union to form a separate government.'],
+      ['Confederacy', 'The group of southern states that left the Union in 1861.'],
+      ['Union', 'The northern states that stayed together during the Civil War.'],
+      ['emancipation', 'The act of freeing enslaved people.'],
+      ['Reconstruction', 'The period after the war when the South rejoined the Union.'],
+    ],
+    facts: [
+      'The Civil War was fought from 1861 to 1865.',
+      'President Abraham Lincoln issued the Emancipation Proclamation in 1863.',
+      'More Americans died in the Civil War than in any other U.S. conflict.',
+    ],
+    fill: [
+      ['The Civil War lasted from 1861 to ___.', '1865'],
+      ['The southern states that left the Union formed the ___.', 'Confederacy'],
+      ['President Lincoln\'s order to free enslaved people was called the ___ Proclamation.', 'Emancipation'],
+    ],
+    mc: [
+      ['When did the Civil War begin?', ['1776', '1812', '1861', '1898'], 2],
+      ['What was the main cause of the Civil War?', ['Taxes on tea', 'Slavery and states\' rights', 'A foreign invasion', 'A gold rush'], 1],
+      ['Who was president during the Civil War?', ['George Washington', 'Thomas Jefferson', 'Abraham Lincoln', 'Ulysses Grant'], 2],
+    ],
+    short: ['Why do you think the Civil War was called a war "between the states"?', 'Describe what emancipation meant for enslaved people.'],
+    passage: 'The American Civil War was the bloodiest conflict in United States history. It began in 1861 when eleven southern states, calling themselves the Confederacy, left the Union over the issues of slavery and states\' rights. President Abraham Lincoln led the Union — the remaining northern states — determined to hold the country together.\n\nFor four terrible years, families were torn apart as brothers sometimes fought on opposite sides. Hundreds of thousands of soldiers died on battlefields across the nation. In 1863, Lincoln issued the Emancipation Proclamation, declaring enslaved people in Confederate states to be free. This gave the war a new moral purpose: not just to preserve the Union, but to end slavery.\n\nThe war ended in 1865 when Confederate General Robert E. Lee surrendered. The long, difficult work of Reconstruction began — healing the nation\'s wounds and figuring out how formerly enslaved people would live as free citizens.',
+  },
 };
 
 /* Generic vocab/fact generation for unknown topics */
@@ -363,7 +530,77 @@ const SHARED = [
   { id: 'sh3', type: 'worksheet', title: 'Money & Making Change', subject: 'Math', grade: 'Grade 2', by: 'Tomás Vela', group: 'Bayside Learners' },
 ];
 
+/* ---- Real AI generation via /api/generate proxy ---- */
+async function generateMaterialAsync(type, cfg) {
+  try { return await _claudeGenerate(type, cfg); }
+  catch (err) { console.warn('AI generation failed, using template:', err.message); }
+  return generateMaterial(type, cfg);
+}
+
+async function _claudeGenerate(type, cfg) {
+  const grade = cfg.grade || 'Grade 3';
+  const topic = (cfg.topic || '').trim() || GEN_BY_ID[type].title;
+  const subject = cfg.subject || 'Science';
+  const base = { id: 'm' + Math.random().toString(36).slice(2, 9), type, title: topic, subject, grade, createdAt: Date.now(), matched: true };
+
+  const prompts = {
+    worksheet: `Create a ${grade} worksheet about "${topic}" (${subject}).
+Return ONLY valid JSON: {"title":"...","instructions":"...","items":[{"n":1,"kind":"fill","q":"The ___ is...","a":"answer"},...],"vocab":[["word","definition"],...]}
+Generate ${cfg.count || 8} items, mix fill-in-the-blank (kind:"fill") and problems (kind:"solve"). Age-appropriate for ${grade}.`,
+
+    quiz: `Create a ${grade} quiz about "${topic}" (${subject}).
+Return ONLY valid JSON: {"title":"...","instructions":"...","mc":[{"q":"...","opts":["A","B","C","D"],"correct":0,"n":1},...], "sa":[{"q":"...","n":1},...]}
+Generate ${cfg.mcCount ?? 4} MC and ${cfg.saCount ?? 2} short-answer. "correct" = 0-based index of correct option.`,
+
+    vocab: `Create a ${grade} vocabulary set about "${topic}" (${subject}).
+Return ONLY valid JSON: {"title":"...","instructions":"...","words":[{"word":"...","def":"...","sentence":"..."},...]}
+Generate 6–8 words with kid-friendly definitions for ${grade} level.`,
+
+    reading: `Create a ${grade} reading passage about "${topic}" (${subject}) at Lexile ${lexileFor(grade)}.
+Return ONLY valid JSON: {"title":"...","instructions":"...","passage":"...","lexile":"${lexileFor(grade)}","questions":[{"kind":"mc","q":"...","opts":["A","B","C","D"],"correct":0,"n":1},{"kind":"mc","q":"...","opts":["A","B","C","D"],"correct":0,"n":2},{"kind":"mc","q":"...","opts":["A","B","C","D"],"correct":0,"n":3},{"kind":"short","q":"...","n":4},{"kind":"short","q":"...","n":5}],"vocab":[["word","definition"],...]}
+Passage: 3–4 vivid paragraphs, age-appropriate. Include 3 MC + 2 short-answer questions, 4 vocab words.`,
+
+    wordsearch: `List vocabulary words about "${topic}" for a word search puzzle.
+Return ONLY valid JSON: {"words":["WORD1","WORD2",...]}
+Provide ${Math.min(8, Math.floor((cfg.size || 13) * 0.55))} words: all-caps, no spaces, 3–11 letters, no proper nouns.`,
+  };
+
+  const resp = await fetch('/api/generate', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 2048,
+      system: 'You are a homeschool curriculum assistant. Respond with ONLY valid JSON — no markdown, no code fences, no explanation.',
+      messages: [{ role: 'user', content: prompts[type] }],
+    }),
+  });
+
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${resp.status}`);
+  }
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${resp.status}`);
+  }
+  const data = await resp.json();
+  const text = data.content[0].text.trim().replace(/^```json\s*/i, '').replace(/```\s*$/, '');
+  const parsed = JSON.parse(text);
+
+  if (type === 'wordsearch') {
+    const words = (parsed.words || []).map(w => w.replace(/[^a-zA-Z]/g, '').toUpperCase()).filter(w => w.length >= 3 && w.length <= 11).slice(0, 8);
+    const grid = buildWordSearch(words, cfg.size || 13);
+    return { ...base, words, grid: grid.grid, size: cfg.size || 13, placed: grid.placed,
+      instructions: `Find and circle all ${words.length} hidden words. Words can go across, down, or diagonally.` };
+  }
+  if (type === 'quiz' && !parsed.points) {
+    parsed.points = (parsed.mc?.length || 0) + (parsed.sa?.length || 0) * 2;
+  }
+  return { ...base, ...parsed };
+}
+
 Object.assign(window, {
   GENERATORS, GEN_BY_ID, SUBJECTS, GRADES, TOPIC_BANK,
-  generateMaterial, topicData, buildWordSearch, lexileFor, seedLibrary, SHARED,
+  generateMaterial, generateMaterialAsync, topicData, buildWordSearch, lexileFor, seedLibrary, SHARED,
 });
