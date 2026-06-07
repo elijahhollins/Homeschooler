@@ -204,8 +204,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent": "#3863a8",
   "radius": 13,
   "displayFont": "Space Grotesk",
-  "greetName": "Maya",
-  "apiKey": ""
+  "greetName": "Maya"
 }/*EDITMODE-END*/;
 
 function App() {
@@ -233,8 +232,6 @@ function App() {
   const [share, setShare] = useState(null);
   const [printMat, setPrintMat] = useState(null);
   const [printKey, setPrintKey] = useState(false);
-
-  window.__hkApiKey = tw.apiKey || '';
 
   const go = (r) => { setRoute(r); window.scrollTo(0, 0); const el = document.querySelector('.hk-main'); if (el) el.scrollTop = 0; };
   const onGenerate = (type, topic) => go({ view: 'gen', type, presetTopic: topic });
@@ -301,9 +298,6 @@ function App() {
         <TweakSection label="Content" />
         <TweakText label="Greeting name" value={tw.greetName}
           onChange={(v) => setTweak('greetName', v)} />
-        <TweakSection label="AI" />
-        <TweakText label="Anthropic API key" value={tw.apiKey || ''}
-          onChange={(v) => setTweak('apiKey', v)} />
       </TweaksPanel>
     </ThemeCtx.Provider>
   );

@@ -530,17 +530,14 @@ const SHARED = [
   { id: 'sh3', type: 'worksheet', title: 'Money & Making Change', subject: 'Math', grade: 'Grade 2', by: 'Tomás Vela', group: 'Bayside Learners' },
 ];
 
-/* ---- Real AI generation via Anthropic API ---- */
+/* ---- Real AI generation via /api/generate proxy ---- */
 async function generateMaterialAsync(type, cfg) {
-  const apiKey = window.__hkApiKey;
-  if (apiKey) {
-    try { return await _claudeGenerate(type, cfg, apiKey); }
-    catch (err) { console.warn('AI generation failed, using template:', err.message); }
-  }
+  try { return await _claudeGenerate(type, cfg); }
+  catch (err) { console.warn('AI generation failed, using template:', err.message); }
   return generateMaterial(type, cfg);
 }
 
-async function _claudeGenerate(type, cfg, apiKey) {
+async function _claudeGenerate(type, cfg) {
   const grade = cfg.grade || 'Grade 3';
   const topic = (cfg.topic || '').trim() || GEN_BY_ID[type].title;
   const subject = cfg.subject || 'Science';
@@ -568,14 +565,9 @@ Return ONLY valid JSON: {"words":["WORD1","WORD2",...]}
 Provide ${Math.min(8, Math.floor((cfg.size || 13) * 0.55))} words: all-caps, no spaces, 3–11 letters, no proper nouns.`,
   };
 
-  const resp = await fetch('https://api.anthropic.com/v1/messages', {
+  const resp = await fetch('/api/generate', {
     method: 'POST',
-    headers: {
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       model: 'claude-haiku-4-5-20251001',
       max_tokens: 2048,
@@ -584,6 +576,10 @@ Provide ${Math.min(8, Math.floor((cfg.size || 13) * 0.55))} words: all-caps, no 
     }),
   });
 
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err.error?.message || `HTTP ${resp.status}`);
+  }
   if (!resp.ok) {
     const err = await resp.json().catch(() => ({}));
     throw new Error(err.error?.message || `HTTP ${resp.status}`);

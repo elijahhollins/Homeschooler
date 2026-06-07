@@ -110,10 +110,9 @@ function GeneratorScreen({ type, presetTopic, onSave, onShare, onToast, onPrint 
   const run = async () => {
     setPhase('generating');
     const built = { ...cfg, words: cfg.wordsRaw ? cfg.wordsRaw.split(',').map((s) => s.trim()).filter(Boolean) : null };
-    const hasKey = !!window.__hkApiKey;
     const [mat] = await Promise.all([
       generateMaterialAsync(type, built),
-      new Promise((r) => setTimeout(r, hasKey ? 0 : 1400)),
+      new Promise((r) => setTimeout(r, 1400)),
     ]);
     setMaterial(mat);
     setPhase('result');
