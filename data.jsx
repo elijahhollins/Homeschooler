@@ -207,7 +207,6 @@ const TOPIC_BANK = {
       'How is a dolphin different from a fish?'],
     passage: 'The ocean is the largest habitat on Earth, and it is full of incredible animals. Some, like fish, breathe underwater using special body parts called gills. Others, like whales and dolphins, are mammals — they must swim to the surface to breathe air, just like we do.\n\nOcean animals have clever ways to survive. An octopus can change color to hide from predators, and it has three hearts pumping blue blood through its body! The blue whale, the largest animal that has ever lived, is so big that its heart alone is the size of a small car.\n\nFrom the sunlit coral reefs near the surface to the dark, cold waters far below, every part of the ocean is home to creatures perfectly suited to their watery world.',
   },
-};
 
   'multiplication': {
     subject: 'Math',
@@ -375,6 +374,7 @@ const TOPIC_BANK = {
     short: ['Why do you think the Civil War was called a war "between the states"?', 'Describe what emancipation meant for enslaved people.'],
     passage: 'The American Civil War was the bloodiest conflict in United States history. It began in 1861 when eleven southern states, calling themselves the Confederacy, left the Union over the issues of slavery and states\' rights. President Abraham Lincoln led the Union — the remaining northern states — determined to hold the country together.\n\nFor four terrible years, families were torn apart as brothers sometimes fought on opposite sides. Hundreds of thousands of soldiers died on battlefields across the nation. In 1863, Lincoln issued the Emancipation Proclamation, declaring enslaved people in Confederate states to be free. This gave the war a new moral purpose: not just to preserve the Union, but to end slavery.\n\nThe war ended in 1865 when Confederate General Robert E. Lee surrendered. The long, difficult work of Reconstruction began — healing the nation\'s wounds and figuring out how formerly enslaved people would live as free citizens.',
   },
+};
 
 /* Generic vocab/fact generation for unknown topics */
 function genericTopic(topic, subject) {
