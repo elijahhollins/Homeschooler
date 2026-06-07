@@ -68,8 +68,25 @@ function NavItem({ icon, label, on, onClick, t }) {
 function ShareModal({ open, onClose, material, t, onToast }) {
   const [tab, setTab] = useState('link');
   const [copied, setCopied] = useState(false);
+  const [emailTo, setEmailTo] = useState('');
+  const [emailNote, setEmailNote] = useState('');
   const groups = ['Cedar Co-op', 'Bayside Learners'];
   const link = material ? `homeschoolkit.app/m/${material.id || 'shared'}` : '';
+
+  const copyLink = () => {
+    navigator.clipboard?.writeText(link).catch(() => {});
+    setCopied(true);
+    onToast('Link copied to clipboard');
+    setTimeout(() => setCopied(false), 1800);
+  };
+
+  const sendEmail = () => {
+    if (!emailTo.trim()) { onToast('Please enter a recipient email'); return; }
+    onToast(`Material sent to ${emailTo.trim().split(',')[0].trim()}`);
+    setEmailTo(''); setEmailNote('');
+    onClose();
+  };
+
   return (
     <Modal open={open} onClose={onClose} title="Share material" width={460}>
       {material && (
@@ -92,7 +109,7 @@ function ShareModal({ open, onClose, material, t, onToast }) {
           <div style={{ display: 'flex', gap: 8 }}>
             <div style={{ flex: 1, background: t.surfaceInset, border: `1px solid ${t.border}`, borderRadius: t.radiusSm,
               padding: '11px 13px', fontSize: 13.5, color: t.textMuted, fontFamily: t.fontMono, overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }}>{link}</div>
-            <Btn kind="primary" icon={copied ? 'check' : 'copy'} onClick={() => { setCopied(true); onToast('Link copied to clipboard'); setTimeout(() => setCopied(false), 1800); }}>{copied ? 'Copied' : 'Copy'}</Btn>
+            <Btn kind="primary" icon={copied ? 'check' : 'copy'} onClick={copyLink}>{copied ? 'Copied' : 'Copy'}</Btn>
           </div>
           <p style={{ fontSize: 12.5, color: t.textFaint, marginTop: 10, marginBottom: 0 }}>Anyone with the link can view and print this material.</p>
         </div>
@@ -112,10 +129,12 @@ function ShareModal({ open, onClose, material, t, onToast }) {
       {tab === 'email' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <Field label="Recipient emails" hint="Separate multiple addresses with commas.">
-            <TextInput value="" onChange={() => {}} placeholder="parent@example.com" />
+            <TextInput value={emailTo} onChange={setEmailTo} placeholder="parent@example.com" />
           </Field>
-          <Field label="Note (optional)"><TextInput value="" onChange={() => {}} placeholder="Thought your kids might like this!" /></Field>
-          <Btn kind="primary" icon="mail" full onClick={() => { onToast('Material emailed'); onClose(); }}>Send</Btn>
+          <Field label="Note (optional)">
+            <TextInput value={emailNote} onChange={setEmailNote} placeholder="Thought your kids might like this!" />
+          </Field>
+          <Btn kind="primary" icon="mail" full onClick={sendEmail}>Send</Btn>
         </div>
       )}
     </Modal>
@@ -185,7 +204,8 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accent": "#3863a8",
   "radius": 13,
   "displayFont": "Space Grotesk",
-  "greetName": "Maya"
+  "greetName": "Maya",
+  "apiKey": ""
 }/*EDITMODE-END*/;
 
 function App() {
@@ -200,11 +220,21 @@ function App() {
     greetName: tw.greetName || 'Maya',
   };
   const [route, setRoute] = useState({ view: 'home' });
-  const [library, setLibrary] = useState(seedLibrary);
+  const [library, setLibrary] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('hk_library') || 'null');
+      return saved || seedLibrary();
+    } catch { return seedLibrary(); }
+  });
+  useEffect(() => {
+    try { localStorage.setItem('hk_library', JSON.stringify(library)); } catch {}
+  }, [library]);
   const [toast, showToast] = useToast();
   const [share, setShare] = useState(null);
   const [printMat, setPrintMat] = useState(null);
   const [printKey, setPrintKey] = useState(false);
+
+  window.__hkApiKey = tw.apiKey || '';
 
   const go = (r) => { setRoute(r); window.scrollTo(0, 0); const el = document.querySelector('.hk-main'); if (el) el.scrollTop = 0; };
   const onGenerate = (type, topic) => go({ view: 'gen', type, presetTopic: topic });
@@ -212,6 +242,9 @@ function App() {
     setLibrary((lib) => [{ id: m.id, type: m.type, title: m.title, subject: m.subject, grade: m.grade, createdAt: Date.now() },
       ...lib.filter((x) => x.id !== m.id)]);
     showToast('Saved to your library');
+  };
+  const onToggleFav = (id) => {
+    setLibrary((lib) => lib.map((m) => m.id === id ? { ...m, fav: !m.fav } : m));
   };
   const doPrint = (m) => { setPrintMat(m); setPrintKey(false); };
   const confirmPrint = () => { window.print(); };
@@ -240,10 +273,10 @@ function App() {
             </div>
           )}
           <div style={{ maxWidth: 1180, margin: '0 auto', padding: narrow ? '20px 18px 50px' : '30px 38px 60px' }}>
-            {route.view === 'home' && <HomeScreen onNav={(v) => go({ view: v })} onGenerate={onGenerate} library={library} onOpen={(m) => go({ view: 'material', entry: m })} greetName={t.greetName} />}
+            {route.view === 'home' && <HomeScreen onNav={(v) => go({ view: v })} onGenerate={onGenerate} library={library} onOpen={(m) => go({ view: 'material', entry: m })} onToggleFav={onToggleFav} greetName={t.greetName} />}
             {route.view === 'gen' && <GeneratorScreen type={route.type} presetTopic={route.presetTopic} onSave={onSave} onShare={setShare} onToast={showToast} onPrint={doPrint} />}
             {route.view === 'place' && <PlaceExplorer onGenerate={onGenerate} onToast={showToast} />}
-            {route.view === 'library' && <LibraryScreen library={library} onOpen={(m) => go({ view: 'material', entry: m })} />}
+            {route.view === 'library' && <LibraryScreen library={library} onOpen={(m) => go({ view: 'material', entry: m })} onToggleFav={onToggleFav} />}
             {route.view === 'shared' && <SharedScreen onOpen={(m) => go({ view: 'material', entry: m })} />}
             {route.view === 'material' && <MaterialView entry={route.entry} t={t} onBack={() => go({ view: route.entry.by ? 'shared' : 'library' })} onShare={setShare} onPrint={doPrint} onToast={showToast} />}
           </div>
@@ -268,6 +301,9 @@ function App() {
         <TweakSection label="Content" />
         <TweakText label="Greeting name" value={tw.greetName}
           onChange={(v) => setTweak('greetName', v)} />
+        <TweakSection label="AI" />
+        <TweakText label="Anthropic API key" value={tw.apiKey || ''}
+          onChange={(v) => setTweak('apiKey', v)} />
       </TweaksPanel>
     </ThemeCtx.Provider>
   );

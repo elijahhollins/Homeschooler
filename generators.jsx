@@ -107,10 +107,16 @@ function GeneratorScreen({ type, presetTopic, onSave, onShare, onToast, onPrint 
   useEffect(() => { setPhase('config'); setMaterial(null); setEditable(false); setShowAnswers(false);
     setCfg((c) => ({ ...c, topic: presetTopic || c.topic })); }, [type]);
 
-  const run = () => {
+  const run = async () => {
     setPhase('generating');
     const built = { ...cfg, words: cfg.wordsRaw ? cfg.wordsRaw.split(',').map((s) => s.trim()).filter(Boolean) : null };
-    setTimeout(() => { setMaterial(generateMaterial(type, built)); setPhase('result'); }, 1500);
+    const hasKey = !!window.__hkApiKey;
+    const [mat] = await Promise.all([
+      generateMaterialAsync(type, built),
+      new Promise((r) => setTimeout(r, hasKey ? 0 : 1400)),
+    ]);
+    setMaterial(mat);
+    setPhase('result');
   };
   const editMat = (k, v) => setMaterial((m) => ({ ...m, [k]: v }));
   const hasAnswerKey = ['worksheet', 'quiz', 'reading', 'wordsearch'].includes(type);

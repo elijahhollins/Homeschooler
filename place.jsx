@@ -16,6 +16,14 @@ function Stars({ n, t, size = 13 }) {
   );
 }
 
+function haversine(lat1, lng1, lat2, lng2) {
+  const R = 3958.8; // Earth radius in miles
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
 function PlaceExplorer({ onGenerate, onToast }) {
   const t = useT();
   const [query, setQuery] = useState('');
@@ -23,9 +31,17 @@ function PlaceExplorer({ onGenerate, onToast }) {
   const [typeFilter, setTypeFilter] = useState('all');
   const [located, setLocated] = useState(false);
   const [locating, setLocating] = useState(false);
+  const [userCoords, setUserCoords] = useState(null);
+
+  const placesWithDist = useMemo(() => {
+    if (!userCoords) return PLACES;
+    return PLACES.map((p) => p.lat && p.lng
+      ? { ...p, dist: Math.round(haversine(userCoords.lat, userCoords.lng, p.lat, p.lng) * 10) / 10 }
+      : p);
+  }, [userCoords]);
 
   const results = useMemo(() => {
-    let r = PLACES;
+    let r = placesWithDist;
     if (typeFilter !== 'all') r = r.filter((p) => p.type === typeFilter);
     if (query.trim()) {
       const q = query.toLowerCase();
@@ -33,11 +49,27 @@ function PlaceExplorer({ onGenerate, onToast }) {
         p.city.toLowerCase().includes(q) || p.type.includes(q));
     }
     return [...r].sort((a, b) => a.dist - b.dist);
-  }, [query, typeFilter]);
+  }, [query, typeFilter, placesWithDist]);
 
   const useLocation = () => {
     setLocating(true);
-    setTimeout(() => { setLocating(false); setLocated(true); onToast('Showing places near you'); }, 1100);
+    if (!navigator.geolocation) {
+      setLocating(false); setLocated(true);
+      onToast('Showing places sorted by distance');
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserCoords({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setLocating(false); setLocated(true);
+        onToast('Showing places near you');
+      },
+      () => {
+        setLocating(false); setLocated(true);
+        onToast('Location unavailable — showing default distances');
+      },
+      { timeout: 8000 }
+    );
   };
 
   if (active) return <PlaceDetail place={active} t={t} onBack={() => setActive(null)} onGenerate={onGenerate} onToast={onToast} />;
